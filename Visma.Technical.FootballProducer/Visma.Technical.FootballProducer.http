@@ -1,0 +1,6 @@
+@Visma.Technical.FootballProducer_HostAddress = http://localhost:5276
+
+GET {{Visma.Technical.FootballProducer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

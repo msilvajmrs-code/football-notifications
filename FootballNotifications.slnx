@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Visma.Technical.Core/Visma.Technical.Core.csproj" Id="4603c0e5-ba72-442f-a3ab-04201f577ab8" />
+  <Project Path="Visma.Technical.DisplayNotifications/Visma.Technical.DisplayNotifications.csproj" />
+  <Project Path="Visma.Technical.FootballProducer/Visma.Technical.FootballProducer.csproj" />
+  <Project Path="Visma.Technical.UnitTests/Visma.Technical.UnitTests.csproj" />
+</Solution>
