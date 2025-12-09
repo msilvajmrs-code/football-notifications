@@ -6,5 +6,6 @@ namespace Visma.Technical.Core.Contracts
 {
     public interface IMqSubscriber
     {
+        Task SubscribeAsync<T>(string topic, Func<T?, Task> onMessageReceived);
     }
 }

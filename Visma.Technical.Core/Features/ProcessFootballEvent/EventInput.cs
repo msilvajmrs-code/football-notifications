@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Visma.Technical.Core.Contracts;
 
 namespace Visma.Technical.Core.Features.ProcessFootballEvent
 {
@@ -9,13 +7,12 @@ namespace Visma.Technical.Core.Features.ProcessFootballEvent
         Goal,
         YellowCard,
         RedCard,
-        Substitution,
         Commentary
     }
 
     public class EventInput
     {
-        public int AboutTeamId { get; set; }
+        public TeamType AboutTeam { get; set; }
         public int GameId { get; set; }
         public EventType Type { get; set; }
         public string? Description { get; set; }

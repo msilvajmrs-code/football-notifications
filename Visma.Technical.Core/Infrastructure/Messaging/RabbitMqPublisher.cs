@@ -17,27 +17,21 @@ namespace Visma.Technical.Core.Infrastructure.Messaging
             };
         }
 
-        public async Task PublishAsync<T>(string queue, T message)
+        public async Task PublishAsync<T>(string topic, T message)
         {
-            if (string.IsNullOrWhiteSpace(queue))
-                throw new ArgumentException("Queue name must be provided.", nameof(queue));
+            if (string.IsNullOrWhiteSpace(topic))
+                throw new ArgumentException("Topic name must be provided.", nameof(topic));
 
             var body = JsonSerializer.SerializeToUtf8Bytes(message);
 
             await using var connection = await _factory.CreateConnectionAsync();
             await using var channel = await connection.CreateChannelAsync();
 
-            await channel.QueueDeclareAsync(
-                queue: queue,
-                durable: true,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null);
-
+            await channel.ExchangeDeclareAsync(exchange: topic, type: ExchangeType.Fanout);
 
             await channel.BasicPublishAsync(
-                exchange: string.Empty,
-                routingKey: queue,
+                exchange: topic,
+                routingKey: string.Empty,
                 body: body);
         }
 

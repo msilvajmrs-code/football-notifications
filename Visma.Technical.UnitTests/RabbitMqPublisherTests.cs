@@ -1,6 +1,6 @@
 ﻿namespace Visma.Technical.UnitTests
 {
-    public class Class1
+    public class RabbitMqPublisherTests
     {
 
     }

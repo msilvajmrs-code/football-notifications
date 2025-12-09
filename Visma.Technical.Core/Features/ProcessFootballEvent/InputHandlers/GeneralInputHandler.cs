@@ -6,17 +6,18 @@ using Visma.Technical.Core.Features.ProcessFootballEvent;
 
 namespace Visma.Technical.Core.Features.PublishFootballEvent.InputHandlers
 {
-    public class CardInputHandler : IInputHandler
+    public class GeneralInputHandler : IInputHandler
     {
         public Notification HandleInput(EventInput eventInput, Game game)
         {
-            var team = game.GetTeam(eventInput.AboutTeam);
+
             return new Notification
             {
                 GameDescription = $"Game: {game.HomeTeam} vs {game.AwayTeam}",
                 Score = $"{game.HomeTeamScore}:{game.AwayTeamScore}",
-                Message = $"{eventInput.Type} issued to team {team}. Details: {eventInput.Description ?? "No additional details."}"
+                Message = $"Commentary: {eventInput.Description ?? "No additional details."}"
             };
         }
+
     }
 }
