@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Scalar.AspNetCore;
 using Visma.Technical.Core.Contracts;
 using Visma.Technical.Core.Features;
@@ -5,6 +6,7 @@ using Visma.Technical.Core.Features.ProcessFootballEvent;
 using Visma.Technical.Core.Features.ProcessFootballEvent.InputHandlers;
 using Visma.Technical.Core.Infrastructure.Data;
 using Visma.Technical.Core.Infrastructure.Messaging;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,19 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+}
+if (!app.Environment.IsDevelopment())
+{
+    // exterme over simplification - just to hide exception details from clients
+    app.UseExceptionHandler(exceptionHandlerApp =>
+    {
+        exceptionHandlerApp.Run(async context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.ContentType = Text.Plain;
+            await context.Response.WriteAsync("Error");
+        });
+    });
 }
 
 app.UseHttpsRedirection();

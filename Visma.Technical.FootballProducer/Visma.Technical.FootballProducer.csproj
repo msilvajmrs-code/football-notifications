@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Visma.Technical.Core\Visma.Technical.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ExceptionHandlers\" />
-  </ItemGroup>
-
 </Project>
