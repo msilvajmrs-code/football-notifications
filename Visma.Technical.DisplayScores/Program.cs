@@ -15,7 +15,7 @@ var subscriber = new RabbitMqSubscriber(rabbitMqConfig);
 await subscriber.SubscribeAsync<Notification>("football_events", notification =>
 {
     ArgumentNullException.ThrowIfNull(notification);
-    Console.WriteLine($"{notification.GameDescription} [{notification.Score}] - {notification.Message}");
+    Console.WriteLine($"{notification.GameDescription} [{notification.Score}]");
     return Task.CompletedTask;
 });
 Console.WriteLine("Press any key to stop listening");

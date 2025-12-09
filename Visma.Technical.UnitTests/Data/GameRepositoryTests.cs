@@ -4,7 +4,7 @@ using Visma.Technical.Core.Contracts;
 using Visma.Technical.Core.Infrastructure.Data;
 using Xunit;
 
-namespace Visma.Technical.UnitTests
+namespace Visma.Technical.UnitTests.Data
 {
     public class GameRepositoryTests
     {

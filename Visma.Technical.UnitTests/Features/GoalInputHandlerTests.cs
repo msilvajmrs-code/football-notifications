@@ -4,7 +4,7 @@ using Visma.Technical.Core.Features.ProcessFootballEvent;
 using Visma.Technical.Core.Features.PublishFootballEvent.InputHandlers;
 using Xunit;
 
-namespace Visma.Technical.UnitTests
+namespace Visma.Technical.UnitTests.Features
 {
     public class GoalInputHandlerTests
     {

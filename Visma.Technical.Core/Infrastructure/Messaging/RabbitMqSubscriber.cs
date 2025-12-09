@@ -14,12 +14,12 @@ namespace Visma.Technical.Core.Infrastructure.Messaging
         private IConnection? _connection;
         private readonly ConnectionFactory _connectionFactory;
 
-        public RabbitMqSubscriber(string rabbitMqUri)
+        public RabbitMqSubscriber(RabbitMqConfiguration config)
         {
             _connectionFactory = new ConnectionFactory
-                {
-                    Uri = new Uri(rabbitMqUri)
-                };
+            {
+                Uri = new Uri($"amqp://{config.UserName}:{config.Password}@{config.HostName}")
+            };
         }
 
         public async Task SubscribeAsync<T>(string topic, Func<T?, Task> onMessageReceived)

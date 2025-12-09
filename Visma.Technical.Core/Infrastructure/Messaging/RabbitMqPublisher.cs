@@ -5,15 +5,18 @@ using Visma.Technical.Core.Contracts;
 
 namespace Visma.Technical.Core.Infrastructure.Messaging
 {
-    public class RabbitMqPublisher : IMqPublisher
+    public class RabbitMqPublisher : IMqPublisher, IDisposable
     {
-        private readonly ConnectionFactory _factory;
+        // To make this completely correct, we should ideally abstract connection factory for testability - simplified for the exercise
 
-        public RabbitMqPublisher(string rabbitMqUri)
+        private readonly ConnectionFactory _factory;
+        private IConnection? _connection;
+
+        public RabbitMqPublisher(RabbitMqConfiguration config)
         {
             _factory = new ConnectionFactory
             {
-                Uri = new Uri(rabbitMqUri)
+                Uri = new Uri($"amqp://{config.UserName}:{config.Password}@{config.HostName}")
             };
         }
 
@@ -24,8 +27,8 @@ namespace Visma.Technical.Core.Infrastructure.Messaging
 
             var body = JsonSerializer.SerializeToUtf8Bytes(message);
 
-            await using var connection = await _factory.CreateConnectionAsync();
-            await using var channel = await connection.CreateChannelAsync();
+            _connection ??= await _factory.CreateConnectionAsync();
+            await using var channel = await _connection.CreateChannelAsync();
 
             await channel.ExchangeDeclareAsync(exchange: topic, type: ExchangeType.Fanout);
 
@@ -33,6 +36,11 @@ namespace Visma.Technical.Core.Infrastructure.Messaging
                 exchange: topic,
                 routingKey: string.Empty,
                 body: body);
+        }
+
+        public void Dispose()
+        {
+            _connection?.Dispose();
         }
 
     }

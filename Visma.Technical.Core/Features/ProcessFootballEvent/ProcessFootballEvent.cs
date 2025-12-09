@@ -10,7 +10,7 @@ namespace Visma.Technical.Core.Features.ProcessFootballEvent
     public class ProcessFootballEvent(
         IGameRepository gameRepository, 
         IMqPublisher mqPublisher,
-        IKeyedServiceProvider serviceProvider) : IProcessFootballEvent
+        IServiceProvider serviceProvider) : IProcessFootballEvent
     {
 
         public async Task ProcessEventAsync(EventInput footballEvent)
