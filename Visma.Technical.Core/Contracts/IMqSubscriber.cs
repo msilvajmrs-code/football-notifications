@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Visma.Technical.Core.Features
+namespace Visma.Technical.Core.Contracts
 {
-    internal class PublishFootballEvent
+    internal interface IMqSubscriber
     {
     }
 }
