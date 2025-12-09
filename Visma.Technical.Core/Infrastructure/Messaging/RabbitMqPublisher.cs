@@ -8,7 +8,6 @@ namespace Visma.Technical.Core.Infrastructure.Messaging
     public class RabbitMqPublisher : IMqPublisher
     {
         private readonly ConnectionFactory _factory;
-        private bool _disposed;
 
         public RabbitMqPublisher(string rabbitMqUri)
         {

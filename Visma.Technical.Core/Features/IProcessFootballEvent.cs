@@ -1,4 +1,4 @@
-﻿namespace Visma.Technical.Core.Contracts
+﻿namespace Visma.Technical.Core.Features
 {
     public interface IProcessFootballEvent
     {

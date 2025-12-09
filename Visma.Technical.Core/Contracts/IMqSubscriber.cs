@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Visma.Technical.Core.Contracts
 {
-    internal interface IMqSubscriber
+    public interface IMqSubscriber
     {
     }
 }
