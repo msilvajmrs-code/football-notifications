@@ -8,7 +8,7 @@ This solution implements a small sample system that processes football events an
 
 - `Visma.Technical.FootballProducer` — HTTP API that receives football events, processes them and publishes messages. Configuration is in `Visma.Technical.FootballProducer/appsettings.json`.  
 - `Visma.Technical.DisplayNotifications` — consumer that subscribes to notification messages and displays them.  
-- `Visma.Technical.DisplayScores` — consumer that subscribes to score update messages and displays them.  
+- `Visma.Technical.DisplayScores` — consumer that subscribes to notification messages and displays the score only.  
 - `Visma.Technical.Core` — shared contracts, models, features and infrastructure.  
 - `Visma.Technical.UnitTests` — unit tests for core features and messaging.
 
